@@ -1,0 +1,43 @@
+kind: ReplicaSet
+apiVersion: apps/v1beta2
+metadata:
+    name: rswithpv
+    annotations:
+        createdBy: ibtihajNaeem
+        email: ibtihajnaeem1@gmail.com
+    namespace: kubepractice
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            apps: mytype
+            type: backend
+    template:
+        metadata:
+            labels:
+                apps: mytype
+                type: backend
+            annotations:
+                createdBy: ibtihajnaeem
+                email: ibtihajnaeem@gmail.com
+        spec:
+            volumes:
+            -   name: pv
+                persistentVolumeClaim:
+                    claimName: pvc
+            containers:
+            -   name: rscontainers
+                image: ibtihajnaeem/test:v4
+                ports:
+                -   containerPort: 80
+                volumeMounts:
+                -   name: pv
+                    mountPath: /data
+                livenessProbe:
+                    exec:
+                        command:
+                        -   ls
+                readinessProbe:
+                    exec:
+                        command:
+                        -   ls

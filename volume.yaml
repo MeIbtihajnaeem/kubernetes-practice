@@ -1,0 +1,17 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+    name: pvs
+    annotations:
+        createdBy: ibtihaj
+        email: ibtihajnaeem1@gmail.com
+    labels:
+        for: testing
+spec:
+    accessModes:
+    -   ReadWriteOnce
+    capacity:
+        storage: 100M
+    hostPath:
+        path: /tmp/abc
+    persistentVolumeReclaimPolicy: Retain

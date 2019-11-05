@@ -1,0 +1,14 @@
+kind: Pod
+apiVersion: v1
+metadata:
+    name: pod-with-l
+    labels:
+      type: testing
+      env: production
+spec:
+    containers:
+    - name: container1
+      image: ibtihajnaeem/test:v4
+      ports:
+      - containerPort: 80
+      - containerPort: 82

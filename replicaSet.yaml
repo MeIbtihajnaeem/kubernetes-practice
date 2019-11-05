@@ -1,0 +1,29 @@
+kind: ReplicaSet
+apiVersion: apps/v1beta2
+metadata:
+    name: myrs
+    annotations: 
+        createdBy: ibtihaj
+        email: ibtihajnaeem1@gmail.com
+    namespace: kubepractice
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            app: rsexample
+            type: frontend
+    template:
+        metadata:
+            labels:
+                app: rsexample
+                type: frontend
+            annotations:
+                createdBy: ibtihaj
+                email: ibtihajnaeem1@gmail.com
+        spec:
+            containers:
+            -   name: rscontainer
+                image: ibtihajnaeem/test:v4
+                ports:
+                -   containerPort: 80
+        

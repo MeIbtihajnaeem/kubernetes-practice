@@ -1,0 +1,48 @@
+kind: ReplicaSet
+apiVersion: apps/v1beta2
+metadata:
+    name: myrswithemptydir
+    annotations:
+        createdby: ibtihajnaeem
+        email: ibtihajnaeem1@gmail.com
+    namespace: kubepractice
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            type: vol
+            app: rp
+    template:
+        metadata:
+            labels:
+                type: vol
+                app:  rp
+            annotations:
+                createdBy: ibtihajNaeem
+                email: ibtihajnaeem1@gmail.com
+        spec:
+            volumes:
+            -   name: shared-dir
+                emptyDir: {}
+            containers:
+            -   name: myrscontainer
+                image: ibtihajnaeem/test:v4
+                ports:
+                -   containerPort: 80
+                volumeMounts:
+                -   name: shared-dir
+                    mountPath: /data
+                livenessProbe:
+                        exec:
+                            command:
+                            -   ls
+                        failureThreshold: 5
+                        periodSeconds: 60
+                        successThreshold: 1
+                        timeoutSeconds: 1
+                        initialDelaySeconds: 15
+                readinessProbe:
+                    exec:
+                      command:
+                        -   ls
+              

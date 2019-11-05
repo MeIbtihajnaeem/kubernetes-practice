@@ -1,0 +1,17 @@
+kind: Pod
+apiVersion: v1
+metadata:
+    name: pod-with-label-annotation-namespace
+    labels:
+        app: backend
+        type: production
+    annotations:
+        createdBy: "ibtihaj Naeem"
+        email: ibtihajnaeem1@gmail.com
+    namespace: kubepractice
+spec:
+    containers:
+    -   image: ibtihajnaeem/test:v4
+        name: container1
+        ports:
+        -   containerPort: 80

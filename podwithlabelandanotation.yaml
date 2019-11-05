@@ -1,0 +1,17 @@
+kind: Pod
+apiVersion: v1
+metadata:
+    name: pod-with-label-and-anotaion
+    labels:
+        type: testing
+        app: frontend
+    annotations:
+        createdBy: ibtihaj
+        ImageBy: ibtihajnaeem1@gmail.com
+spec:
+    containers:
+    -   image: ibtihajnaeem/test:v4
+        name: container1
+        ports:
+        -   containerPort: 80
+    

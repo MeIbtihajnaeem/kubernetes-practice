@@ -1,0 +1,42 @@
+kind: ReplicaSet
+apiVersion: apps/v1beta2
+metadata:
+    name: rsphase4
+    annotations:
+        createdBy: ibtihaj
+        email: ibtihajnaeem1@gmail.com
+    namespace: kubepractice
+spec:
+    replicas: 5
+    selector:
+        matchLabels:
+            type: helloworld
+            app:  phase
+    template:
+        metadata:
+            labels:
+                type: helloworld
+                app: phase
+            annotations:
+                createdBy: ibtihaj
+                email: ibtihajnaeem1@gmail.com
+        spec:
+                containers:
+                -   name: rscontainer
+                    image: ibtihajnaeem/test:v4
+                    ports:
+                    -   containerPort: 80
+                    livenessProbe:
+                        exec:
+                            command:
+                            -   ls
+                        failureThreshold: 5
+                        periodSeconds: 60
+                        successThreshold: 1
+                        timeoutSeconds: 1
+                        initialDelaySeconds: 15
+                    readinessProbe:
+                        exec:
+                            command:
+                            -   ls
+              
