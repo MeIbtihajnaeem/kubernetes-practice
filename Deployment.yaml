@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: ks
+    annotations:
+        createdBy: "Muhammad Ibtihaj Naeem"
+        email: i.ibtihajnaeem@gmail.com
+    labels:
+        type: php
+        app: web
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            type: php
+            app: web
+    template:
+        metadata:
+            labels:
+                type: php
+                app: web
+            annotations:
+                createdBy: "Muhammad Ibtihaj Naeem"
+                email: i.ibtihajnaeem@gmail.com
+        spec:
+                containers:
+                -   name: rscontainer
+                    image: meibtihajnaeem/php-with-docker:v1
+                    ports:
+                    -   containerPort: 80
